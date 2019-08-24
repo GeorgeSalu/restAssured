@@ -3,6 +3,7 @@ package rest;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 /**
  * @author george on 24/08/2019
@@ -15,5 +16,7 @@ public class OlaMundo {
         System.out.println(response.getBody().asString());
         System.out.println(response.getStatusCode());
 
+        ValidatableResponse validacao = response.then();
+        validacao.statusCode(200);
     }
 }
