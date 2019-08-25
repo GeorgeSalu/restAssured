@@ -71,4 +71,18 @@ public class OlaMundoTest {
         assertThat("joaquina", anyOf(is("maria"), is("joaquina")));
     }
 
+    @Test
+    public void devoValidarBody() {
+        given()
+                //pré condicoes
+            .when()
+                .get("http://restapi.wcaquino.me/ola")
+            .then()
+                .statusCode(200)
+                .body(Matchers.is("Ola Mundo!"))
+                .body(containsString("Mundo"))
+                .body(is(not(nullValue())));
+
+    }
+
 }
