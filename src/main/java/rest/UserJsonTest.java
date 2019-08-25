@@ -89,4 +89,18 @@ public class UserJsonTest {
 
     }
 
+    @Test
+    public void deveVerificarListaNaRaiz() {
+
+        given()
+        .when()
+            .get("https://restapi.wcaquino.me/users")
+        .then()
+            .statusCode(200)
+            .body("$", hasSize(3))
+            .body("name", hasItems("João da Silva", "Maria Joaquina", "Ana Júlia"));
+
+
+    }
+
 }
