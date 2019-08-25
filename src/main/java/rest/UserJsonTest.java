@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.*;
@@ -126,6 +128,18 @@ public class UserJsonTest {
 
 
 
+    }
+
+    @Test
+    public void devoUnirJsonPathComJava() {
+        ArrayList<String> nomes = given()
+        .when()
+            .get("https://restapi.wcaquino.me/users")
+        .then()
+            .statusCode(200)
+            .extract().path("name.findAll{it.startsWith('Maria')}");
+
+        Assert.assertEquals(1, nomes.size());
     }
 
 }
