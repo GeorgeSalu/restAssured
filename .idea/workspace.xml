@@ -4,7 +4,6 @@
     <list default="true" id="aa08a779-6853-441c-977c-56fd50474315" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/rest/OlaMundoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rest/OlaMundoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/rest/OlaMundo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/rest/OlaMundo.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.OlaMundoTest.testeOlaMundo">
+  <component name="RunManager" selected="JUnit.OlaMundoTest">
     <configuration name="OlaMundo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="rest.OlaMundo" />
       <module name="trainingRestAssured" />
@@ -56,6 +55,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OlaMundoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trainingRestAssured" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="rest" />
+      <option name="MAIN_CLASS_NAME" value="rest.OlaMundoTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,6 +92,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OlaMundoTest" />
         <item itemvalue="JUnit.OlaMundoTest.testeOlaMundo" />
         <item itemvalue="Application.OlaMundo" />
       </list>
