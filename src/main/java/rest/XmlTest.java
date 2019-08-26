@@ -21,6 +21,10 @@ public class XmlTest {
             .body("user.name", Matchers.is("Ana Julia"))
             .body("user.@id", Matchers.is("3"))
             .body("user.filhos.name.size()", Matchers.is(2))
+            .body("user.filhos.name[0]", Matchers.is("Zezinho"))
+            .body("user.filhos.name[1]", Matchers.is("Luizinho"))
+            .body("user.filhos.name", Matchers.hasItem("Luizinho"))
+            .body("user.filhos.name", Matchers.hasItems("Luizinho", "Zezinho"))
         ;
     }
 
