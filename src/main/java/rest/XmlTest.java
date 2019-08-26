@@ -39,6 +39,9 @@ public class XmlTest {
             .body("users.user.size()", Matchers.is(3))
             .body("users.user.findAll{it.age.toInteger() <= 25}.size()", Matchers.is(2))
             .body("users.user.@id", Matchers.hasItems("1","2","3"))
+            .body("users.user.find{it.age == 25}.name", Matchers.is("Maria Joaquina"))
+            .body("users.user.findAll{it.name.toString().contains('n')}.name", Matchers.hasItems("Maria Joaquina","Ana Julia"))
+            .body("users.user.salary.find{it != null}.toDouble()", Matchers.is(1234.5678d))
         ;
     }
 
