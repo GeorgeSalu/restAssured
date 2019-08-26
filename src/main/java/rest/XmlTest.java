@@ -29,4 +29,17 @@ public class XmlTest {
         ;
     }
 
+    @Test
+    public void devoFazerPesquisasAvancadasComXml() {
+        given()
+        .when()
+            .get("https://restapi.wcaquino.me/usersXML")
+        .then()
+            .statusCode(200)
+            .body("users.user.size()", Matchers.is(3))
+            .body("users.user.findAll{it.age.toInteger() <= 25}.size()", Matchers.is(2))
+            .body("users.user.@id", Matchers.hasItems("1","2","3"))
+        ;
+    }
+
 }
