@@ -60,4 +60,17 @@ public class XmlTest {
         Assert.assertEquals("Maria Joaquina".toUpperCase(), nome.toUpperCase());
     }
 
+    @Test
+    public void devoFazerPesquisasAvancadasComXPath() {
+        given()
+        .when()
+            .get("https://restapi.wcaquino.me/usersXML")
+        .then()
+            .statusCode(200)
+            .body(Matchers.hasXPath("count(/users/user)", Matchers.is("3")))
+
+        ;
+
+    }
+
 }
