@@ -3,6 +3,9 @@ package rest;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 
 /**
@@ -25,6 +28,28 @@ public class VerbosTest {
             .body("id", Matchers.is(Matchers.notNullValue()))
             .body("name", Matchers.is("jose"))
             .body("age", Matchers.is(50))
+        ;
+    }
+
+    @Test
+    public void deveSalvarUsuarioUsandoMap() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("name", "Usuario via map");
+        params.put("age", 25);
+
+
+        given()
+            .log().all()
+            .contentType("application/json")
+            .body(params)
+        .when()
+            .post("https://restapi.wcaquino.me/users")
+        .then()
+            .log().all()
+            .statusCode(201)
+            .body("id", Matchers.is(Matchers.notNullValue()))
+            .body("name", Matchers.is("Usuario via map"))
+            .body("age", Matchers.is(25))
         ;
     }
 
