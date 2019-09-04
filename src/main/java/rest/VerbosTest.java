@@ -114,4 +114,29 @@ public class VerbosTest {
         ;
     }
 
+    @Test
+    public void deveRemoverUsuario() {
+        given()
+            .log().all()
+        .when()
+            .delete("https://restapi.wcaquino.me/users/1")
+        .then()
+            .log().all()
+            .statusCode(204)
+        ;
+    }
+
+    @Test
+    public void deveRemoverUsuarioInexistente() {
+        given()
+            .log().all()
+        .when()
+            .delete("https://restapi.wcaquino.me/users/100")
+        .then()
+            .log().all()
+            .statusCode(400)
+        .body("error", Matchers.is("Registro inexistente"))
+        ;
+    }
+
 }
