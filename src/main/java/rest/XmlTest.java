@@ -68,6 +68,9 @@ public class XmlTest {
         .then()
             .statusCode(200)
             .body(Matchers.hasXPath("count(/users/user)", Matchers.is("3")))
+            .body(Matchers.hasXPath("/users/user[@id = '1']"))
+            .body(Matchers.hasXPath("//user[@id = '2']"))
+            .body(Matchers.hasXPath("//name[text() = 'Luizinho']/../../name", Matchers.is("Ana Julia")))
 
         ;
 
