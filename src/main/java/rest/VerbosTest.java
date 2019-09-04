@@ -1,6 +1,7 @@
 package rest;
 
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -71,6 +72,27 @@ public class VerbosTest {
             .body("age", Matchers.is(35))
         ;
     }
+
+    @Test
+    public void deveDeserializarAoSalvarUsuarioUsandoObjeto() {
+        User user = new User("Usuario deserializado", 35);
+
+        User usuarioInserido = given()
+            .log().all()
+            .contentType("application/json")
+            .body(user)
+        .when()
+            .post("https://restapi.wcaquino.me/users")
+        .then()
+            .log().all()
+            .statusCode(201)
+            .extract().body().as(User.class)
+        ;
+
+        Assert.assertEquals("Usuario deserializado", usuarioInserido.getName());
+        Assert.assertThat(usuarioInserido.getAge(), Matchers.is(35));
+    }
+
 
     @Test
     public void naoDeveSalvarUsuarioSemNome() {
