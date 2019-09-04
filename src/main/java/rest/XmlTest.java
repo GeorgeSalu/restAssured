@@ -1,6 +1,7 @@
 package rest;
 
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -43,6 +44,20 @@ public class XmlTest {
             .body("users.user.findAll{it.name.toString().contains('n')}.name", Matchers.hasItems("Maria Joaquina","Ana Julia"))
             .body("users.user.salary.find{it != null}.toDouble()", Matchers.is(1234.5678d))
         ;
+    }
+
+    @Test
+    public void devoTrabalharComXmlEJava() {
+        String nome = given()
+        .when()
+            .get("https://restapi.wcaquino.me/usersXML")
+        .then()
+            .statusCode(200)
+            .extract().path("users.user.name.findAll{it.toString().startsWith('Maria')}")
+
+        ;
+
+        Assert.assertEquals("Maria Joaquina".toUpperCase(), nome.toUpperCase());
     }
 
 }
