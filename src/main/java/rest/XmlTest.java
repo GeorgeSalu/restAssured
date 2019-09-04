@@ -22,6 +22,7 @@ public class XmlTest {
     @Test
     public void devoTrabalharComXml() {
         given()
+            .log().all()
         .when()
             .get("/usersXML/3")
         .then()
