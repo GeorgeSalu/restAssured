@@ -1,7 +1,9 @@
 package rest;
 
+import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -12,11 +14,16 @@ import static io.restassured.RestAssured.given;
  */
 public class XmlTest {
 
+    @BeforeClass
+    public static void setup() {
+        RestAssured.baseURI = "https://restapi.wcaquino.me";
+    }
+
     @Test
     public void devoTrabalharComXml() {
         given()
         .when()
-            .get("https://restapi.wcaquino.me/usersXML/3")
+            .get("/usersXML/3")
         .then()
             .statusCode(200)
                 .rootPath("user")
