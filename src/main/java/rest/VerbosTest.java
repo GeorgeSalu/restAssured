@@ -128,6 +128,26 @@ public class VerbosTest {
     }
 
     @Test
+    public void deveSalvarUsuarioViaXMLUsandoObjeto() {
+        User user = new User("Usuario XML", 40);
+
+        given()
+           .log().all()
+            .contentType("application/xml")
+            .body(user)
+        .when()
+            .post("https://restapi.wcaquino.me/usersXML")
+        .then()
+            .log().all()
+            .statusCode(201)
+            .body("user.@id", Matchers.is(Matchers.notNullValue()))
+            .body("user.name", Matchers.is("Usuario XML"))
+            .body("user.age", Matchers.is("40"))
+        ;
+    }
+
+
+    @Test
     public void deveAlterarUsuario() {
         given()
             .log().all()
