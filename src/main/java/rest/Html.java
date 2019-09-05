@@ -1,6 +1,7 @@
 package rest;
 
 import io.restassured.http.ContentType;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
@@ -21,6 +22,9 @@ public class Html {
             .log().all()
             .statusCode(200)
             .contentType(ContentType.HTML)
+            .body("html.body.div.table.tbody.tr.size()", Matchers.is(3))
+            .body("html.body.div.table.tbody.tr[1].td[2]", Matchers.is("25"))
+
         ;
     }
 
