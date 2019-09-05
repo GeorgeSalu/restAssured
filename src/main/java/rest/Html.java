@@ -28,4 +28,20 @@ public class Html {
         ;
     }
 
+    @Test
+    public void deveFazerBuscasXPathComHtml() {
+        given()
+            .log().all()
+        .when()
+            .get("https://restapi.wcaquino.me/v2/users?format=clean")
+        .then()
+            .log().all()
+            .statusCode(200)
+            .contentType(ContentType.HTML)
+            .body(Matchers.hasXPath("count(//table/tr)", Matchers.is("4")))
+
+        ;
+    }
+
+
 }
