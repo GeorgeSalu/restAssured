@@ -24,4 +24,21 @@ public class AuthTest {
         ;
     }
 
+
+    //api.openweathermap.org/data/2.5/weather?q=Fortaleza,BR$appid=03b1a2926d557b8971950da3747ad7e1&units=metric
+
+    @Test
+    public void deveObterClima() {
+        given()
+            .log().all()
+            .queryParam("q", "Fortaleza,BR")
+            .queryParam("appid", "03b1a2926d557b8971950da3747ad7e1")
+            .queryParam("units", "metric")
+        .when()
+            .get("http://api.openweathermap.org/data/2.5/weather")
+        .then()
+            .log().all()
+            .statusCode(200)
+        ;
+    }
 }
