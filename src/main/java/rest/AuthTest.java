@@ -39,6 +39,8 @@ public class AuthTest {
         .then()
             .log().all()
             .statusCode(200)
+            .body("name", Matchers.is("Fortaleza"))
+            .body("coord.lon", Matchers.is(-38.52f))
         ;
     }
 }
