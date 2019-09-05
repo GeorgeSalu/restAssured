@@ -43,4 +43,29 @@ public class AuthTest {
             .body("coord.lon", Matchers.is(-38.52f))
         ;
     }
+
+    @Test
+    public void naoDeveAcessarSemSenha() {
+        given()
+            .log().all()
+        .when()
+                .get("https://restapi.wcaquino.me/basicauth")
+        .then()
+            .log().all()
+            .statusCode(401)
+        ;
+    }
+
+    @Test
+    public void deveFazerAutenticacaoBasica() {
+        given()
+            .log().all()
+        .when()
+            .get("https://admin:senha@restapi.wcaquino.me/basicauth")
+        .then()
+            .log().all()
+            .statusCode(200)
+        ;
+    }
+
 }
