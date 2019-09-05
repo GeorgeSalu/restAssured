@@ -2,6 +2,7 @@ package rest;
 
 import io.restassured.matcher.RestAssuredMatchers;
 import org.junit.Test;
+import org.xml.sax.SAXParseException;
 
 import static io.restassured.RestAssured.*;
 /**
@@ -16,6 +17,19 @@ public class SchemaTest {
             .log().all()
         .when()
             .get("https://restapi.wcaquino.me/usersXML")
+        .then()
+            .log().all()
+            .statusCode(200)
+            .body(RestAssuredMatchers.matchesXsdInClasspath("users.xsd"))
+        ;
+    }
+
+    @Test(expected = SAXParseException.class)
+    public void deveValidarSchemaXmlInvalido() {
+        given()
+            .log().all()
+        .when()
+            .get("https://restapi.wcaquino.me/invalidUsersXML")
         .then()
             .log().all()
             .statusCode(200)
