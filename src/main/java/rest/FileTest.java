@@ -54,4 +54,16 @@ public class FileTest {
         ;
     }
 
+    @Test
+    public void deveBaixarArquivo() {
+        given()
+            .log().all()
+        .when()
+            .get("http://restapi.wcaquino.me/download")
+        .then()
+            .log().all()
+            .statusCode(200)
+        ;
+    }
+
 }
