@@ -72,7 +72,7 @@ public class BarrigaTest extends BaseTest {
 
         given()
             .header("Authorization", "JWT "+TOKEN)
-            .body("{ \"nome\": \"conta qualquer\"}")
+            .body("{ \"nome\": \"conta alterada\"}")
         .when()
             .put("/contas/31977")
         .then()
