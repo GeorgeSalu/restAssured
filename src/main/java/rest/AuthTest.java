@@ -117,4 +117,19 @@ public class AuthTest {
 
     }
 
+    @Test
+    public void deveAcessarAplicacaoWeb() {
+        given()
+            .log().all()
+                .formParam("email","george.salu10@gmail.com")
+                .formParam("senha", "sssasas")
+                .contentType(ContentType.URLENC.withCharset("UTF-8"))
+        .when()
+            .post("http://seubarriga.wcaquino.me/login")
+        .then()
+            .log().all()
+            .statusCode(200)
+        ;
+    }
+
 }
