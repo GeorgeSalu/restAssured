@@ -1,7 +1,11 @@
 package rest;
 
+import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.*;
 
@@ -79,6 +83,38 @@ public class AuthTest {
             .log().all()
             .statusCode(200)
         ;
+    }
+
+    @Test
+    public void devefazerAutenticacaoComTokenJWT() {
+        Map<String, String> login = new HashMap<String, String>();
+        login.put("email", "george.salu10@gmail.com");
+        login.put("senha", "saludasilva");
+
+        String token = given()
+            .log().all()
+            .body(login)
+            .contentType(ContentType.JSON)
+        .when()
+            .post("http://barrigarest.wcaquino.me/signin")
+        .then()
+            .log().all()
+            .statusCode(200)
+            .extract().path("token")
+        ;
+
+        //obter contas
+        given()
+            .log().all()
+            .header("Authorization", "JWT "+token)
+        .when()
+            .get("http://barrigarest.wcaquino.me/contas")
+        .then()
+            .log().all();
+
+
+
+
     }
 
 }
