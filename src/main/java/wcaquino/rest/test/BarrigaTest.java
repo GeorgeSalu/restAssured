@@ -80,5 +80,17 @@ public class BarrigaTest extends BaseTest {
         ;
     }
 
+    @Test
+    public void naoDeveInserirContaComMesmoNome() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+           .body("{ \"nome\": \"conta alterada\"}")
+        .when()
+            .post("/contas")
+        .then()
+            .statusCode(400)
+        ;
+    }
 
 }
