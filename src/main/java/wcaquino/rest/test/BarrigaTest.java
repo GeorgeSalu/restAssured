@@ -148,4 +148,16 @@ public class BarrigaTest extends BaseTest {
         ;
     }
 
+    @Test
+    public void naoDeveRemoverContaComMovimentacao() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+        .when()
+            .post("/contas/1223")
+        .then()
+            .statusCode(400)
+        ;
+    }
+
 }
