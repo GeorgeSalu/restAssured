@@ -132,4 +132,20 @@ public class BarrigaTest extends BaseTest {
         ;
     }
 
+    @Test
+    public void naoDeveInserirMovimentacoesComDataFutura() {
+        Movimentacao mov = new Movimentacao();
+        mov.setData_transacao("20/05/2019");
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+            .body(mov)
+        .when()
+            .post("/transacoes")
+        .then()
+            .statusCode(400)
+            .body("error", Matchers.is("Data da Movimentação deve ser menor ou igual a data atual"))
+        ;
+    }
+
 }
