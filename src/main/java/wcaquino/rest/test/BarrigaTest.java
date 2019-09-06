@@ -1,5 +1,6 @@
 package wcaquino.rest.test;
 
+import org.junit.Before;
 import org.junit.Test;
 import wcaquino.rest.core.BaseTest;
 
@@ -12,6 +13,24 @@ import static io.restassured.RestAssured.*;
  * @project trainingRestAssured
  */
 public class BarrigaTest extends BaseTest {
+
+    private String TOKEN;
+
+    @Before
+    public void login() {
+        Map<String, String> login = new HashMap<>();
+        login.put("email", "george.salu10@gmail.com");
+        login.put("senha", "saludasilva");
+
+        TOKEN = given()
+            .body(login)
+        .when()
+            .post("/signin")
+        .then()
+            .statusCode(200)
+            .extract().path("token")
+            ;
+    }
 
     @Test
     public void naoDeveAcessarAPISemToken() {
@@ -47,5 +66,19 @@ public class BarrigaTest extends BaseTest {
             .statusCode(201)
         ;
     }
+
+    @Test
+    public void deveAlterarContaComSucesso() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+            .body("{ \"nome\": \"conta qualquer\"}")
+        .when()
+            .put("/contas/31977")
+        .then()
+            .statusCode(200)
+        ;
+    }
+
 
 }
