@@ -1,5 +1,6 @@
 package wcaquino.rest.test;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import wcaquino.rest.core.BaseTest;
@@ -111,9 +112,23 @@ public class BarrigaTest extends BaseTest {
             .header("Authorization", "JWT "+TOKEN)
             .body(mov)
         .when()
-            .post("/contas")
+            .post("/transacoes")
         .then()
             .statusCode(201)
+        ;
+    }
+
+    @Test
+    public void deveValidarComposObrigatoriosMovimentacao() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+            .body("{}")
+        .when()
+            .post("/transacoes")
+        .then()
+            .statusCode(400)
+            .body("$", Matchers.hasSize(8))
         ;
     }
 
