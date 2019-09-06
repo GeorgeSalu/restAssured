@@ -166,10 +166,22 @@ public class BarrigaTest extends BaseTest {
         given()
             .header("Authorization", "JWT "+TOKEN)
         .when()
-            .post("saldo")
+            .post("/saldo")
         .then()
             .statusCode(400)
             .body("find{it.conta_id == 1223}.saldo", Matchers.is("100.00"))
+        ;
+    }
+
+    @Test
+    public void deveRemoverMovimentacao() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+        .when()
+            .post("/transacoes/1223")
+        .then()
+            .statusCode(204)
         ;
     }
 
