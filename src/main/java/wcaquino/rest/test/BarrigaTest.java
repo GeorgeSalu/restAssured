@@ -160,4 +160,17 @@ public class BarrigaTest extends BaseTest {
         ;
     }
 
+    @Test
+    public void deveCalcularSaldoContas() {
+
+        given()
+            .header("Authorization", "JWT "+TOKEN)
+        .when()
+            .post("saldo")
+        .then()
+            .statusCode(400)
+            .body("find{it.conta_id == 1223}.saldo", Matchers.is("100.00"))
+        ;
+    }
+
 }
